@@ -1,5 +1,6 @@
 const express = require('express');
 const axios = require('axios');
+const getGeoCode = require('./utils/getGeocode');
 require('dotenv').config();
 
 // env.config();
@@ -7,7 +8,7 @@ const app = express();
 const PORT = process.env.PORT || 5001;
 const apiHost = process.env.REMOTE_API_HOST;
 const getRateByAddrUri = process.env.GETRATEBYADDRURI;
-const getRateByCityUri = process.env.GETRATEBYCITYURI;
+const getRateByLngLatUri = process.env.GETRATEBYLNGLATURI;
 
 const baseApiUri = process.env.BASE_API_URI;
 const byAddr = process.env.BYADDR;
@@ -43,17 +44,17 @@ app.get(byAddrUri, async (req, res) => {
 const byCityUri = '/' + baseApiUri + '/' + byCity;
 console.log(byCityUri);
 app.get(byCityUri, async (req, res) => {
-    const { city } = req.query;
+    const { city, } = req.query;
     console.log(city);
     if (!city) {
       return res.status(400).send('city is required');
     }
   
     try {
-    //   const response = await axios.get(`${apiHost}`, {
-        console.log(getRateByCityUri);
-        const response = await axios.get(apiHost + '/' + getRateByCityUri, {
-        params: { city, }
+        const addr = city + ', CA';
+        const geoCode = await getGeoCode(addr);
+        const response = await axios.get(apiHost + '/' + getRateByLngLatUri, {
+        params: { longitude:geoCode.lng, latitude:geoCode.lat, }
       });
       res.json(response.data);
     } catch (error) {
