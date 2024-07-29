@@ -1,0 +1,19 @@
+{
+  "name": "casalestax",
+  "version": "1.0.0",
+  "description": "Web Api to call Sales Tax for California",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "Tony Wang",
+  "license": "MIT",
+  "devDependencies": {
+    "jest": "^29.7.0"
+  },
+  "dependencies": {
+    "axios": "^1.7.2",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2"
+  }
+}
