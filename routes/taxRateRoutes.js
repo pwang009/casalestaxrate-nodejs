@@ -28,7 +28,7 @@ router.get(byAddrUri, async (req, res) => {
     const response = await axios.get(`${apiHost}/${getRateByAddrUri}`, {
       params: { address, city, zip }
     });
-    res.json(response.data);
+    res.json(response.data.taxRateInfo[0]);
   } catch (error) {
     res.status(error.response ? error.response.status : 500).send(error.message);
   }
@@ -38,18 +38,24 @@ router.get(byAddrUri, async (req, res) => {
 const byCityUri = `/${baseApiUri}/${byCity}`;
 // console.log(byCityUri);
 router.get(byCityUri, async (req, res) => {
-  const { city } = req.query;
+  let { city } = req.query;
   if (!city) {
     return res.status(400).send('City is required');
   }
 
+  // console.log(city);
   try {
     const addr = `${city}, CA`;
     const geoCode = await getGeoCode(addr);
     const response = await axios.get(`${apiHost}/${getRateByLngLatUri}`, {
       params: { longitude: geoCode.lng, latitude: geoCode.lat }
     });
-    res.json(response.data);
+    console.log(city);
+    // const {rate, city: responseCity, county} = response.data.taxRateInfo[0];
+    // console.log(city);
+    // const result = {rate, city: responseCity, county};
+    res.json(response.data.taxRateInfo[0]);
+    // return {result};
   } catch (error) {
     res.status(error.response ? error.response.status : 500).send(error.message);
   }
