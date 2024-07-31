@@ -13,22 +13,20 @@ jobs:
     name: build and deploy
     runs-on: windows-latest
     steps:
-      - name: checkout source code from branch main
+    - name: checkout source code from branch main
       uses: actions/checkout@4
-      - name: set up Node.js ${{ env.NODE_VERSION }}
+    - name: set up Node.js ${{ env.NODE_VERSION }}
       uses: actions/setup-node@v4
       with:
         node-version: ${{ env.NODE_VERSION }}
-        cache: 'npm'
-      
-      - name: install dependencies
-        run: 
-          npm install
-          npm run build --if-present
-      - name: deploy to azure web app
-        uses: azure/webapps-deploy@v3
-          with: 
-            app-name: ${{ env.AZURE_WEBAPP_NAME }}
-            publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-            package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
-      
+        cache: 'npm' 
+    - name: install dependencies
+      run: 
+        npm install
+        npm run build --if-present
+    - name: deploy to azure web app
+      uses: azure/webapps-deploy@v3
+      with: 
+        app-name: ${{ env.AZURE_WEBAPP_NAME }}
+        publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+        package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
