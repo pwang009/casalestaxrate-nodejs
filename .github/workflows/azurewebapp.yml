@@ -14,7 +14,7 @@ jobs:
     runs-on: windows-latest
     steps:
     - name: checkout source code from branch main
-      uses: actions/checkout@4
+      uses: actions/checkout@v4
     - name: set up Node.js ${{ env.NODE_VERSION }}
       uses: actions/setup-node@v4
       with:
