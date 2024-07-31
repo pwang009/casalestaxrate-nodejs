@@ -16,16 +16,22 @@ const getSwaggerDefinition = (port)=> ({
       description: 'Development server',
     },
   ],
+  tags: [
+    {
+        name: 'Sales Tax',
+        description: 'Endpoints related to sales tax rates',
+      },
+  ],
 });
 
 const options = (port) => ({
   swaggerDefinition: getSwaggerDefinition(port),
-  apis: [path.join(__dirname, './routes/taxRateRoutes.js')], 
+  apis: [path.join(__dirname, './routes/*.js')], 
 });
 
 const setupSwagger = (app, port) => {
    const swaggerSpec = swaggerJSDoc(options(port));
-   console.log(swaggerSpec);
+  //  console.log(swaggerSpec);
   app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 };
 

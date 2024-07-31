@@ -2,7 +2,7 @@ const express = require('express');
 const http = require('http');
 const https = require('https');
 const fs = require('fs');
-const setupSwagger = require('./swaggerConfig'); 
+const setupSwagger = require('./utils/swaggerConfig'); 
 const checkAuth = require('./utils/checkAuth');
 const taxRateRoutes = require('./routes/taxRateRoutes');
 require('dotenv').config();
