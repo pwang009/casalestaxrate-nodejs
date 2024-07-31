@@ -14,6 +14,46 @@ const byAddr = process.env.BYADDR;
 const byCity = process.env.BYCITY;
 
 // by address
+/**
+ * @swagger
+ * /CASalesTaxRate/byaddress:
+ *   get:
+ *     summary: Get tax rate by address
+ *     parameters:
+ *       - in: query
+ *         name: address
+ *         required: true
+ *         schema:
+ *           type: string
+ *       - in: query
+ *         name: city
+ *         required: true
+ *         schema:
+ *           type: string
+ *       - in: query
+ *         name: zip
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Successful response
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 rate:
+ *                   type: number
+ *                 city:
+ *                   type: string
+ *                 county:
+ *                   type: string
+ *       400:
+ *         description: Invalid parameters
+ *       500:
+ *         description: Internal server error
+ */
 const byAddrUri = `/${baseApiUri}/${byAddr}`;
 // console.log(byAddrUri);
 
@@ -35,10 +75,40 @@ router.get(byAddrUri, async (req, res) => {
 });
 
 // by city
+/**
+ * @swagger
+ * /CASalesTaxRate/bycity:
+ *   get:
+ *     summary: Get tax rate by city
+ *     parameters:
+ *       - in: query
+ *         name: city
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Successful response
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 rate:
+ *                   type: number
+ *                 city:
+ *                   type: string
+ *                 county:
+ *                   type: string
+ *       400:
+ *         description: Invalid parameters
+ *       500:
+ *         description: Internal server error
+ */
 const byCityUri = `/${baseApiUri}/${byCity}`;
 // console.log(byCityUri);
 router.get(byCityUri, async (req, res) => {
-  let { city } = req.query;
+  const { city } = req.query;
   if (!city) {
     return res.status(400).send('City is required');
   }

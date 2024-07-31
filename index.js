@@ -1,11 +1,15 @@
 const express = require('express');
-const checkAuth = require('./utils/authMiddleware');
+const http = require('http');
+const https = require('https');
+const fs = require('fs');
+const checkAuth = require('./utils/checkAuth');
 const taxRateRoutes = require('./routes/taxRateRoutes');
 require('dotenv').config();
 
 const app = express();
-const isProd = process.env.NODE_ENV || 'development';
-const port = process.env.PORT || 5001;
+const isProd = process.env.NODE_ENV === 'production';
+const httpPort = process.env.HTTP_PORT || 5000;
+const httpsPort = process.env.HTTPS_PORT || 5001;
 
 // Use express.json() to parse JSON bodies
 app.use(express.json());
@@ -19,8 +23,17 @@ app.get('/', (req, res) => {
 
 app.use('/', taxRateRoutes);
 
-// if (!isProd === 'production') 
+// start web server with https enabled if it's not production env
+if (!isProd)  {
+  const privateKey = fs.readFileSync('./ssl/https.key', 'utf8');
+  const certificate = fs.readFileSync('./ssl/https.crt', 'utf8');
+  const credentials = { key: privateKey, cert: certificate };
+  https.createServer(credentials, app).listen(httpsPort, () => {
+    console.log(`HTTPS Server running on port ${httpsPort}`);
+  });
+}
 
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
+// start web server with http 
+http.createServer(app).listen(httpPort, () => {
+  console.log(`Server is running on port ${httpPort}`);
 });
