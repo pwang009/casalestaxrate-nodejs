@@ -13,7 +13,6 @@ const baseApiUri = process.env.BASE_API_URI;
 const byAddr = process.env.BYADDR;
 const byCity = process.env.BYCITY;
 
-// by address
 /**
  * @swagger
  * /CASalesTaxRate/byaddress:
@@ -58,10 +57,10 @@ const byAddrUri = `/${baseApiUri}/${byAddr}`;
 // console.log(byAddrUri);
 
 router.get(byAddrUri, async (req, res) => {
-  const { address, city, zip } = req.query;
+  const { street: address, city, zip } = req.query;
 
   if (!address || !city || !zip) {
-    return res.status(400).send('Address, city, and zip are required');
+    return res.status(400).send('street, city, and zip are required');
   }
 
   try {
@@ -74,7 +73,6 @@ router.get(byAddrUri, async (req, res) => {
   }
 });
 
-// by city
 /**
  * @swagger
  * /CASalesTaxRate/bycity:
@@ -120,7 +118,7 @@ router.get(byCityUri, async (req, res) => {
     const response = await axios.get(`${apiHost}/${getRateByLngLatUri}`, {
       params: { longitude: geoCode.lng, latitude: geoCode.lat }
     });
-    console.log(city);
+    // console.log(city);
     // const {rate, city: responseCity, county} = response.data.taxRateInfo[0];
     // console.log(city);
     // const result = {rate, city: responseCity, county};

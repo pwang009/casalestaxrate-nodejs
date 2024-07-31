@@ -2,6 +2,7 @@ const express = require('express');
 const http = require('http');
 const https = require('https');
 const fs = require('fs');
+const setupSwagger = require('./swaggerConfig'); 
 const checkAuth = require('./utils/checkAuth');
 const taxRateRoutes = require('./routes/taxRateRoutes');
 require('dotenv').config();
@@ -13,7 +14,9 @@ const httpsPort = process.env.HTTPS_PORT || 5001;
 
 // Use express.json() to parse JSON bodies
 app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 
+setupSwagger(app, httpPort);
 // Apply the checkAuth middleware to all routes
 app.use(checkAuth);
 
