@@ -5,13 +5,13 @@ const getGeoCode = require('../utils/getGeocode');
 
 // const for remote api
 const apiHost = process.env.REMOTE_API_HOST;
-const getRateByAddrUri = process.env.GETRATEBYADDRURI;
-const getRateByLngLatUri = process.env.GETRATEBYLNGLATURI;
+const getRateByAddrUri = process.env.GETRATEBYADDRURI || 'GetRateByAddress';
+const getRateByLngLatUri = process.env.GETRATEBYLNGLATURI || 'GetRateByLngLat';
 
 // const for this web api
-const baseApiUri = process.env.BASE_API_URI;
-const byAddr = process.env.BYADDR;
-const byCity = process.env.BYCITY;
+const baseApiUri = process.env.BASE_API_URI || 'CASalesTaxRate';
+const byAddr = process.env.BYADDR || 'byAddress';
+const byCity = process.env.BYCITY || 'byCity';
 
 /**
  * @swagger
