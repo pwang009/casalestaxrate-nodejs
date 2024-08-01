@@ -2,7 +2,7 @@
   "name": "casalestax",
   "version": "1.0.0",
   "description": "Web Api to call Sales Tax for California",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "jest"
   },
