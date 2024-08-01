@@ -9,7 +9,7 @@ require('dotenv').config();
 
 const app = express();
 const isProd = process.env.NODE_ENV === 'production';
-const httpPort = process.env.HTTP_PORT || 5000;
+const httpPort = process.env.PORT || 5000;
 const httpsPort = process.env.HTTPS_PORT || 5001;
 
 // Use express.json() to parse JSON bodies
