@@ -4,7 +4,7 @@ require('dotenv').config();
 
 function checkAuth(req, res, next) {
 
-  if (req.path === '/swagger' || req.path.startsWith('/swagger')) {
+  if (req.path === '/swagger' || req.path.startsWith('/swagger') || req.path === '/healthcheck') {
     return next();
   }
 
