@@ -3,6 +3,7 @@ const swaggerJSDoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
 const path = require('path');
 
+const serverUrl = process.env.SERVER_URL || 'http://localhost'
 const getSwaggerDefinition = (port)=> ({
   openapi: '3.0.0',
   info: {
@@ -12,8 +13,8 @@ const getSwaggerDefinition = (port)=> ({
   },
   servers: [
     {
-      url: `http://localhost:${port}`,
-      description: 'Development server',
+      url: `${serverUrl}:${port}`,
+      // description: 'Development server',
     },
   ],
   tags: [
