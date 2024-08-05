@@ -1,0 +1,17 @@
+version: '3.4'
+
+services:
+  casalestax:
+    image: casalestax
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    environment:
+      NODE_ENV: production
+      AUTH_TOKEN: 466289DD-95A5-4BD1-A98E-BF9D858197AA
+      REMOTE_API_HOST: https://services.maps.cdtfa.ca.gov/api/taxrate
+      GOOGLE_MAPS_API_KEY: AIzaSyBsQaQCi6SIcKG4vdE_gWjvRrsBXnqfVYE
+      GOOGLE_MAPS_API_URL: https://maps.googleapis.com/maps/api/geocode/json
+    ports:
+      - 5000:5000
+      - 5001:5001

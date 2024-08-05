@@ -57,7 +57,7 @@ const byAddrUri = `/${byAddr}`;
 // console.log(byAddrUri);
 
 router.get(byAddrUri, async (req, res) => {
-  const { street: address, city, zip } = req.query;
+  const { Street: address, city, zip } = req.query;
 
   if (!address || !city || !zip) {
     return res.status(400).send('street, city, and zip are required');
