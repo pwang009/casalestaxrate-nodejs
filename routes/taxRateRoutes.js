@@ -9,7 +9,7 @@ const getRateByAddrUri = process.env.GETRATEBYADDRURI || 'GetRateByAddress';
 const getRateByLngLatUri = process.env.GETRATEBYLNGLATURI || 'GetRateByLngLat';
 
 // const for this web api
-const baseApiUri = process.env.BASE_API_URI || 'CASalesTaxRate';
+// const baseApiUri = process.env.BASE_API_URI || 'CASalesTaxRate';
 const byAddr = process.env.BYADDR || 'byAddress';
 const byCity = process.env.BYCITY || 'byCity';
 
@@ -53,7 +53,7 @@ const byCity = process.env.BYCITY || 'byCity';
  *       500:
  *         description: Internal server error
  */
-const byAddrUri = `/${baseApiUri}/${byAddr}`;
+const byAddrUri = `/${byAddr}`;
 // console.log(byAddrUri);
 
 router.get(byAddrUri, async (req, res) => {
@@ -103,7 +103,7 @@ router.get(byAddrUri, async (req, res) => {
  *       500:
  *         description: Internal server error
  */
-const byCityUri = `/${baseApiUri}/${byCity}`;
+const byCityUri = `/${byCity}`;
 // console.log(byCityUri);
 router.get(byCityUri, async (req, res) => {
   const { city } = req.query;

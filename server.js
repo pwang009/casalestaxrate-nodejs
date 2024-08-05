@@ -12,6 +12,8 @@ const isProd = process.env.NODE_ENV === 'production';
 const httpPort = process.env.PORT || 5000;
 const httpsPort = process.env.HTTPS_PORT || 5001;
 
+const baseApiUri = process.env.BASE_API_URI || 'CASalesTaxRate';
+
 // Use express.json() to parse JSON bodies
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -24,7 +26,7 @@ app.get('/', (req, res) => {
   res.send('Welcome to the Tax Rate API Wrapper');
 });
 
-app.use('/', taxRateRoutes);
+app.use(`/${baseApiUri}`, taxRateRoutes);
 
 // start web server with https enabled if it's not production env
 if (!isProd)  {
