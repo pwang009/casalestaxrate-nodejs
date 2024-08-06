@@ -7,7 +7,7 @@ services:
       context: .
       dockerfile: ./Dockerfile
     environment:
-      NODE_ENV: development
+      NODE_ENV: production
       AUTH_TOKEN: 466289DD-95A5-4BD1-A98E-BF9D858197AA
       REMOTE_API_HOST: https://services.maps.cdtfa.ca.gov/api/taxrate
       GOOGLE_MAPS_API_KEY: AIzaSyBsQaQCi6SIcKG4vdE_gWjvRrsBXnqfVYE
@@ -15,11 +15,3 @@ services:
     ports:
       - 5000:5000
       - 5001:5001
-    volumes:
-      - .:/usr/src/app
-      - ./ssl:/usr/src/app/ssl
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:5000"]
-      interval: 1m30s
-      timeout: 10s
-      retries: 3
