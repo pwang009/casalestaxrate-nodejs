@@ -12,7 +12,7 @@
     npm i 
     nodemon server.js
     ```
-    or running in docker container
+    or running in docker container, on project root folder
     ```
     docker-compose up 
     ```

@@ -4,7 +4,7 @@ const router = express.Router();
 const getGeoCode = require('../utils/getGeocode');
 
 // const for remote api
-const apiHost = process.env.REMOTE_API_HOST;
+const apiHost = process.env.REMOTE_APIHOST;
 const getRateByAddrUri = process.env.GETRATEBYADDRURI || 'GetRateByAddress';
 const getRateByLngLatUri = process.env.GETRATEBYLNGLATURI || 'GetRateByLngLat';
 

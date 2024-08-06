@@ -4,6 +4,7 @@
   "description": "Web Api to call Sales Tax for California",
   "main": "server.js",
   "scripts": {
+    "build": "webpack",
     "test": "jest"
   },
   "author": "Tony Wang",
