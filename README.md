@@ -10,7 +10,7 @@
     copy ssl folder and .env file to the project folder  
     ```
     npm i 
-    nodemon server.js
+    nodemon src/server.js
     ```
     or running in docker container, on project root folder
     ```
